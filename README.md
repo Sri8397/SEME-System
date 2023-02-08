@@ -1,7 +1,7 @@
 # SEME-System
-Single Entry Multiple Exit System
+## Single Entry Multiple Exit System
 
-PROJECT IDEA -
+## PROJECT IDEA -
 Designing a single entry - multiple exit system for the campus of IIT(ISM) Dhanbad
 
 PROJECT BRIEFINGS - 
