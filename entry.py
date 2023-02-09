@@ -1,22 +1,52 @@
-from csv import writer
+import json
 import datetime
-import pandas as pd
 
-data_to_append = []
-data_to_append.append(input('Reg. No.: '))
-data_to_append.append(input('Owner Name: '))
-data_to_append.append(input('Vehicle Type: '))
+def add_data(): 
+    reg = input('Reg. No.: ')
+    name = input('Owner Name: ')
+    type = input('Vehicle Type: ')
 
-t1 = datetime.datetime.now()
-time_in_second = int(input('Total required time (min): ')) * 60
-t2 = t1 + datetime.timedelta(seconds=time_in_second)
+    t1 = datetime.datetime.now()
 
-data_to_append.append(t1.strftime('%a %d/%m/%Y'))
-data_to_append.append(t1.strftime('%H:%M:%S'))
-data_to_append.append(t2.strftime('%H:%M:%S'))
-data_to_append.append('N')
+    time_in_minutes = input('Total required time (min): ')
+    flag = False
+    while flag == False:
+        try: 
+            time_in_second = int(time_in_minutes) * 60
+            flag = True
+        except Exception as e: 
+            print(e)
+            time_in_minutes = input('Enter correct time: ')
 
-with open('main-memory.csv', 'a') as f_object:
-	writer_object = writer(f_object)
-	writer_object.writerow(data_to_append)
-	f_object.close()
+    entry_date = (t1.strftime('%a %d/%m/%Y'))
+    entry_time = (t1.strftime('%H:%M:%S'))
+    inside = True
+
+    obj = {
+        "name": name,
+        "reg no": reg,
+        "vehicle type": type,
+        "frequency": 1, 
+        "entry": {
+            "date": entry_date,
+            "time": entry_time
+        },
+        "exit": {
+            "exit date": None,
+            "exit time": None
+        },
+        "allocated time": time_in_second,
+        "remaining time": time_in_second,
+        "inside": inside,
+        "fault": False
+    }
+    
+    path = 'json-files/main-memory.json'
+    with open(path, 'r') as getData:
+        getData = getData.read()
+        data = json.loads(getData)
+        data[reg] = obj
+        with open(path, 'w') as write:
+            json.dump(data, write)
+
+add_data()
