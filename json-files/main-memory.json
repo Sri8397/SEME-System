@@ -1,0 +1,26 @@
+{
+  "BR26AE6455": {
+    "name": "Srikant Agrawal",
+    "reg no": "BR26AE6455",
+    "vehicle type": "Sedan",
+    "frequency": 1,
+    "entry": { "date": "Thu 09/02/2023", "time": "15:39:52" },
+    "exit": { "exit date": null, "exit time": null },
+    "allocated time": 2700,
+    "remaining time": 2700,
+    "inside": true,
+    "fault": false
+  },
+  "UP48DR0001": {
+    "name": "Srijal Rai",
+    "reg no": "UP48DR0001",
+    "vehicle type": "Rolls Royace",
+    "frequency": 1,
+    "entry": { "date": "Thu 09/02/2023", "time": "15:40:43" },
+    "exit": { "exit date": null, "exit time": null },
+    "allocated time": 7200,
+    "remaining time": 7200,
+    "inside": true,
+    "fault": false
+  }
+}
