@@ -36,7 +36,7 @@ const Exit = () => {
   }
 
   return (
-    <div className="mt-2 sm:mt-6 mx-auto w-full max-w-xl border-2 shadow-md border-slate-400 min-h-[60vh]">
+    <div className="mt-2 mx-auto w-full max-w-xl border-2 shadow-md border-slate-400 min-h-[60vh]">
       <header
         className="flex flex-row text-center"
         style={{ backgroundColor: "#61C0BF" }}

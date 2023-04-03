@@ -4,7 +4,7 @@ console.log(storedData)
 
 export default function Home() {
   return (
-    <div class="mx-2 shadow-md my-4">
+    <div class="mx-2 shadow-md mt-2">
       <div class="flex flex-col bg-white  h-[90vh]">
         <div class="overflow-auto sm:-mx-6 lg:-mx-8">
           <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
