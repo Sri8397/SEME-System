@@ -20,7 +20,7 @@ const Exit = () => {
             data1 = []
           }
           else 
-          data1.splice(ind, ind);
+          data1.splice(ind, 1);
         }
       });
     }
