@@ -3,13 +3,13 @@ import logo from '../seme-logo.png'
 
 function Navbar() {
     return (
-        <nav className="pl-1 flex text-xl font-mono border-b-slate-200 border-b-2 h-[10vh] align-center " style={{backgroundColor: "#61C0BF"}}>
-            <a className="basis-1/2 flex align-center">
+        <nav className="pl-1 flex text-xl font-mono border-b-slate-200 border-b-2 h-[10vh] " style={{backgroundColor: "#61C0BF"}}>
+            <a className="basis-1/2 flex items-center">
                 <Link to="/" className="nav-link bg-white">
                 <img className="h-[8vh] w-auto" src={logo} />
                 </Link>
             </a>
-            <a className='basis-1/2 flex justify-end flex-nowrap'>
+            <a className='basis-1/2 flex items-center justify-end flex-nowrap'>
             <a className="ms-auto p-3">
                 <Link className="nav-link" to="/entry"> 
                     Entry
