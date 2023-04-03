@@ -1,47 +1,53 @@
-import {Link} from 'react-router-dom'
+const storedData = JSON.parse(localStorage.getItem('entry'));
+console.log(storedData)
 
-const Home = () => {
-    const styles = {
-        margin: "10% 30% 10% 30%"
-    }
-    return (
-        <div className="card text-center" style={styles}>
-            <div className="card-header">
-                <ul className="nav nav-tabs card-header-tabs">
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/entry"> 
-                            Entry
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/exit"> 
-                            Exit
-                        </Link>
-                    </li>
-                </ul>
-            </div>
-            <div className="card-body"> 
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Registration Number" aria-label="Recipient's username" aria-describedby="basic-addon2"/>
-                </div>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Owner Name" aria-label="Recipient's username" aria-describedby="basic-addon2"/>
-                </div>
-                <div class="input-group mb-3">
-                <input type="date" class="form-control" id="basic-url" aria-describedby="basic-addon3"/>
-                </div>
 
-                <div class="input-group mb-3">
-                
-                <input type="time" class="form-control" aria-label="Amount (to the nearest dollar)"/>
-                <span class="input-group-text">.00</span>
-                </div>
-                <div className='btn btn-primary'> 
-                    Entry
-                </div>
+export default function Home() {
+  return (
+    <div class="mx-2 shadow-md mt-2">
+      <div class="flex flex-col bg-white  h-[90vh]">
+        <div class="overflow-auto sm:-mx-6 lg:-mx-8">
+          <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+            <div class="overflow-hidden">
+              <table class="min-w-full text-left text-sm font-light">
+                <thead class="border-b font-medium dark:border-neutral-300">
+                  <tr>
+                    <th scope="col" class="px-6 py-4">
+                      #
+                    </th>
+                    <th scope="col" class="px-6 py-4">
+                      Name
+                    </th>
+                    <th scope="col" class="px-6 py-4">
+                      Vehicle No.
+                    </th>
+                    <th scope="col" class="px-6 py-4">
+                      Exit Date
+                    </th>
+                    <th scope="col" class="px-6 py-4">
+                      Remaining time
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    storedData?.map((item, index) => (
+                        <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-100">
+                          <td class="whitespace-nowrap px-6 py-4 font-medium">{index+1}</td>
+                          <td class="whitespace-nowrap px-6 py-4">{item.name}</td>
+                          <td class="whitespace-nowrap px-6 py-4">{item.vehicleNumber}</td>
+                          <td class="whitespace-nowrap px-6 py-4">{item.exitDate}</td>
+                          <td class="whitespace-nowrap px-6 py-4">{item.exitTime}</td>
+                        </tr>
+                      ))
+                  }
+                 
+                </tbody>
+              </table>
             </div>
+          </div>
         </div>
-    ); 
+      </div>
+    </div>
+  );
 }
-
-export default Home; 

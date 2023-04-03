@@ -1,11 +1,6 @@
 const Credits = () => {
-    const styles = {
-        margin: "10% auto 10% auto", 
-        maxWidth: "480px", 
-    }
     return (
-
-        <div className="rounded-b border-2 border-slate-400 text-center" style={styles}>
+        <div className="mt-2 sm:mt-6 mx-auto w-full max-w-xl border-2 shadow-md border-slate-400 min-h-[60vh]">
             <header className="font-mono text-xl font-semibold" style={{backgroundColor: "#61C0BF"}}> 
                 <div className=' border-b-2 border-slate-600 p-3'>CREDITS</div>
             </header>
