@@ -1,6 +1,6 @@
 const Credits = () => {
     return (
-        <div className="mt-12 mx-auto w-full max-w-xl rounded border-2 border-slate-400">
+        <div className="mt- mx-auto w-full max-w-xl rounded border-2 border-slate-400">
             <header className="font-mono text-xl font-semibold" style={{backgroundColor: "#61C0BF"}}> 
                 <div className=' border-b-2 border-slate-600 p-3'>CREDITS</div>
             </header>

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 const Entry = () => {
     return (
-        <div className="mt-12 mx-auto w-full max-w-xl rounded border-2 border-slate-400">
+        <div className="mt-2 sm:mt-6 mx-auto w-full max-w-xl border-2 shadow-md border-slate-400 min-h-[60vh]">
             <header className='flex flex-row text-center' style={{backgroundColor: "#61C0BF"}}> 
                 <div className='basis-1/2 text-xl font-mono border-b-2 border-slate-600 p-3'>Entry</div>
                 <div className='basis-1/2 text-xl font-mono border-b-2 border-slate-600 p-3'>
@@ -12,7 +12,7 @@ const Entry = () => {
                 </div>
             </header>
             <body className='font-mono'> 
-                <form className='p-3'>
+                <form className='p-3 relative'>
                     <div class="form-row row">
                         <div class="col-md-6">
                             <label for="fName">First Name</label>

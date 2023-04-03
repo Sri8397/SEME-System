@@ -5,6 +5,7 @@ import Exit from "./components/Exit"
 import Credits from "./components/Credits"
 import Signin from "./components/Signin"
 import Home from "./components/Home"
+import Check from "./components/Check"
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route path="/exit" element={<><Header/><Exit/></>}/>
           <Route path="/signin" element={<><Header/><Signin/></>}/>
           <Route path="/credits" element={<><Header/><Credits/></>}/>
+          <Route path="/check" element={<><Header/><Check/></>}/>
         </Routes>
     </Router>
   );
