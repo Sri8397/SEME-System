@@ -1,7 +1,5 @@
 export default function Check() {
-    return (
-        <div>
-            Hello
-        </div>
-    );
+    // localStorage.clear();
+
+  return <div>Hello</div>;
 }
