@@ -9,7 +9,7 @@ function Navbar() {
                 <img className="h-[8vh] w-auto" src={logo} />
                 </Link>
             </a>
-            <a className='basis-1/2 flex justify-end'>
+            <a className='basis-1/2 flex justify-end flex-nowrap'>
             <a className="ms-auto p-3">
                 <Link className="nav-link" to="/entry"> 
                     Entry
