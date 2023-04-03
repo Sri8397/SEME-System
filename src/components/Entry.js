@@ -1,8 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
-
-
 const Entry = () => {
     const [firstName, setFirstName] = useState()
     const [lastName, setLastName] = useState()
@@ -132,7 +130,7 @@ const Entry = () => {
                         <input
                             type="submit"
                             value="ENTRY"
-                            className="hover:-translate-y-0.5 transition motion-reduce:hover:translate-y-0 motion-reduce:transition-none border-spacing-2 border-2 bg-stone-700 text-stone-100 px-3 py-2 mt-4 rounded-lg"
+                            className="w-24 hover:-translate-y-0.5 transition motion-reduce:hover:translate-y-0 motion-reduce:transition-none border-spacing-2 border-2 bg-stone-700 text-stone-100 px-3 py-2 mt-4 rounded-lg"
                         />
                         <div>
                             <Link to="/signin">New vehicle?</Link>
