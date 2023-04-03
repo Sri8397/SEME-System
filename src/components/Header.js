@@ -3,7 +3,7 @@ import logo from '../seme-logo.png'
 
 function Navbar() {
     return (
-        <nav className="navbar navbar-expand-lg text-xl font-mono border-b-slate-200 border-b-2 h-[10vh]" style={{backgroundColor: "#61C0BF"}}>
+        <nav className="pl-1 navbar navbar-expand-lg text-xl font-mono border-b-slate-200 border-b-2 h-[10vh]" style={{backgroundColor: "#61C0BF"}}>
             <a className="navbar-brand flex align-center">
                 <Link to="/" className="nav-link bg-white">
                 <img className="h-[8vh] w-full" src={logo} />
