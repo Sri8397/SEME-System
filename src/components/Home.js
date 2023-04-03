@@ -1,47 +1,71 @@
-import {Link} from 'react-router-dom'
-
-const Home = () => {
-    const styles = {
-        margin: "10% 30% 10% 30%"
+function EntryData(props) {
+    return (
+      <tr>
+        {props}
+        <td>{props.fname}</td>
+        <td>{props.lname}</td>
+      </tr>
+    );
+  }
+  
+  function VideoList({ videos, emptyHeading }) {
+    const count = videos.length;
+    let heading = emptyHeading;
+    if (count > 0) {
+      const noun = count > 1 ? "Videos" : "Video";
+      heading = count + ' ' + noun;
     }
     return (
-        <div className="card text-center" style={styles}>
-            <div className="card-header">
-                <ul className="nav nav-tabs card-header-tabs">
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/entry"> 
-                            Entry
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/exit"> 
-                            Exit
-                        </Link>
-                    </li>
-                </ul>
-            </div>
-            <div className="card-body"> 
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Registration Number" aria-label="Recipient's username" aria-describedby="basic-addon2"/>
-                </div>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Owner Name" aria-label="Recipient's username" aria-describedby="basic-addon2"/>
-                </div>
-                <div class="input-group mb-3">
-                <input type="date" class="form-control" id="basic-url" aria-describedby="basic-addon3"/>
-                </div>
-
-                <div class="input-group mb-3">
-                
-                <input type="time" class="form-control" aria-label="Amount (to the nearest dollar)"/>
-                <span class="input-group-text">.00</span>
-                </div>
-                <div className='btn btn-primary'> 
-                    Entry
-                </div>
-            </div>
+        <section>
+            <h1> 
+                {heading}
+            </h1>
+        {videos.map((videos) => (
+          <EntryData fname={videos.fname} lname={videos.lname} />
+        ))}
+      </section>
+    );
+  }
+  
+  export default function Home() {
+    let obj = JSON.parse(localStorage.getItem("entries"));
+    if (obj == null) obj = { entry: [] };
+  
+    const entries = obj["entry"];
+  
+    function eraseData() {
+      localStorage.clear();
+    }
+  
+    const styles = {
+      margin: "5% auto 5% auto",
+      maxWidth: "480px",
+    };
+  
+    return (
+      <div className="rounded border-2 border-slate-400" style={styles}>
+        <div className="font-mono">
+          <table className="table">
+            <thead>
+              <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <VideoList videos={entries} emptyHeading="Hello guys" />
+            </tbody>
+          </table>
         </div>
-    ); 
-}
-
-export default Home; 
+        <div className="grid justify-items-center">
+          <button
+            onClick={eraseData}
+            class="hover:-translate-y-0.5 transition motion-reduce:hover:translate-y-0 motion-reduce:transition-none border-spacing-2 border-2 bg-stone-700 text-stone-100 px-3 py-2 mt-4 rounded-lg"
+          >
+            Clear
+          </button>
+        </div>
+      </div>
+    );
+  }
+  

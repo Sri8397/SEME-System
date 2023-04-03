@@ -4,13 +4,14 @@ import Entry from "./components/Entry"
 import Exit from "./components/Exit"
 import Credits from "./components/Credits"
 import Signin from "./components/Signin"
+import Home from "./components/Home"
 
 
 function App() {
   return (
     <Router>
         <Routes>
-          <Route path="/" element={<><Header/><Entry/></>} />
+          <Route path="/" element={<><Header/><Home/></>} />
           <Route path="/entry" element={<><Header/><Entry/></>}/>
           <Route path="/exit" element={<><Header/><Exit/></>}/>
           <Route path="/signin" element={<><Header/><Signin/></>}/>

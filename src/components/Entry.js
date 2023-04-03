@@ -1,13 +1,8 @@
 import { Link } from 'react-router-dom'
 
 const Entry = () => {
-    const styles = {
-        margin: "10% auto 10% auto", 
-        maxWidth: "480px", 
-    }
     return (
-
-        <div class="rounded border-2 border-slate-400" style={styles}>
+        <div className="mt-12 mx-auto w-full max-w-xl rounded border-2 border-slate-400">
             <header className='flex flex-row text-center' style={{backgroundColor: "#61C0BF"}}> 
                 <div className='basis-1/2 text-xl font-mono border-b-2 border-slate-600 p-3'>Entry</div>
                 <div className='basis-1/2 text-xl font-mono border-b-2 border-slate-600 p-3'>
@@ -21,26 +16,25 @@ const Entry = () => {
                     <div class="form-row row">
                         <div class="col-md-6">
                             <label for="fName">First Name</label>
-                            <input type="text" class="form-control" id="fName" placeholder="First name"/>
+                            <input type="text" class="form-control" id="fName" placeholder="First name" required/>
                         </div>
                         <div class="col-md-6">
                             <label for="lName">Last Name</label>
-                            <input type="text" class="form-control" id="lName" placeholder="Last name"/>
+                            <input type="text" class="form-control" id="lName" placeholder="Last name" required/>
                         </div>
                     </div>
                     <div className='form-group mt-3'> 
                         <label for="inputRegNo">Registration No</label>
-                        <input type="text" className="form-control" id="inputRegNo" placeholder='BR26AEXXXX'/>
+                        <input type="text" className="form-control" id="inputRegNo" placeholder='BR26AEXXXX' required/>
                     </div>
-                    
                     <div className='form-row row mt-3'>
                         <div className='form-group col-md-6'>
                             <label for="entryDate">Date</label>
-                            <input type="date" class="form-control" id="entryDate" aria-describedby="basic-addon3"/>
+                            <input type="date" class="form-control" id="entryDate" aria-describedby="basic-addon3" required/>
                         </div>
                         <div className='form-group col-md-6'>
                             <label for="entryTime">Time</label>
-                            <input type="time" class="form-control" id="Time" aria-describedby="basic-addon3"/>
+                            <input type="time" class="form-control" id="Time" aria-describedby="basic-addon3" required/>
                         </div>
                     </div>
                     <div className="grid justify-items-center" >

@@ -1,13 +1,8 @@
 import { Link } from 'react-router-dom'
 
 const Signin = () => {
-    const styles = {
-        margin: "10% auto 10% auto", 
-        maxWidth: "480px", 
-    }
     return (
-
-        <div class="rounded-b border-2 border-slate-400" style={styles}>
+        <div className="mt-12 mx-auto w-full max-w-xl rounded border-2 border-slate-400">
             <header className='flex flex-row text-center' style={{backgroundColor: "#61C0BF"}}> 
                 <div className='basis-1/2 text-xl font-mono border-b-2 border-slate-600 p-3'>
                     <Link to="/entry">
