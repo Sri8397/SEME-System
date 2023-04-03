@@ -1,5 +1,17 @@
-export default function Check() {
-    // localStorage.clear();
+import { Link } from 'react-router-dom';
+import { useState } from 'react'
 
-  return <div>Hello</div>;
-}
+const Check = () => {
+  let data2 = JSON.parse(localStorage.getItem('tehkikat'))
+  let data1 = JSON.parse(localStorage.getItem('entry'))
+  console.log(data1)
+  console.log(data2)
+
+  return (
+       <div>
+        Hello
+       </div>
+  );
+};
+
+export default Check;

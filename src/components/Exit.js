@@ -11,12 +11,12 @@ const Exit = () => {
   function handleSubmit() {
     let data1 = JSON.parse(localStorage.getItem("entry"));
     let prevDate, prevTime;
-    if (data1 != null) {
+    if (data1 !== null) {
       data1.forEach(function (item, ind) {
-        if (item.vehicleNumber == vehicleNumber) {
+        if (item.vehicleNumber === vehicleNumber) {
           prevDate = item.exitDate;
           prevTime = item.exitTime;
-          if(data1.length == 1) {
+          if(data1.length === 1) {
             data1 = []
           }
           else 
@@ -26,10 +26,11 @@ const Exit = () => {
     }
     localStorage.setItem("entry", JSON.stringify(data1));
     let fault = false;
-    if (prevDate != undefined) {
+    if (prevDate !== undefined) {
       if (prevDate < exitDate) {
         fault = true;
-      } else if (prevDate == exitDate && prevTime < exitTime) {
+      } 
+      else if (prevDate === exitDate && prevTime < exitTime) {
         fault = true;
       }
     }
@@ -80,6 +81,7 @@ const Exit = () => {
               className="form-control"
               id="inputRegNo"
               placeholder="BR26AEXXXX"
+              pattern="[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4}"
               required
               onChange={(e) => setVehicleNumber(e.target.value)}
             />
