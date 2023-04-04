@@ -21,12 +21,12 @@ const Entry = () => {
         const entryTime = new Date()
 
         for (let i = 0; i < n; i++) {
-            if (data2[i].vehicleNumber == vehicleNumber) {
+            if (data2[i].vehicleNumber === vehicleNumber) {
                 present = true
-                if (data2[i].isBanned == true) {
+                if (data2[i].isBanned === true) {
                     banned = true
                 }
-                else if (data2[i].insideCampus == true) {
+                else if (data2[i].insideCampus === true) {
                     inside = true
                 }
                 else {
@@ -47,7 +47,7 @@ const Entry = () => {
             }
             else{
                 let name = firstName
-                if (lastName != undefined) {
+                if (lastName !== undefined) {
                     name += " " + lastName
                 }
                 const data =
