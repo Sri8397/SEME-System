@@ -12,7 +12,6 @@ const Entry = () => {
     const navigate = useNavigate()
 
     let data2 = JSON.parse(localStorage.getItem('tehkikat'))
-    let n = data2.length
 
     function handleSubmit() {
         let present = false
@@ -20,24 +19,24 @@ const Entry = () => {
         let inside = false
         const entryTime = new Date()
 
-        for (let i = 0; i < n; i++) {
-            if (data2[i].vehicleNumber === vehicleNumber) {
+        data2?.foreach(function(items, i) {
+            if (items.vehicleNumber === vehicleNumber) {
                 present = true
-                if (data2[i].isBanned === true) {
+                if (items.isBanned === true) {
                     banned = true
                 }
-                else if (data2[i].insideCampus === true) {
+                else if (items.insideCampus === true) {
                     inside = true
                 }
                 else {
-                    data2[i].history.push({
+                    items.history.push({
                         entry: entryTime,
                         exitDate: exitDate,
                         exitTime: exitTime
                     })
                 }
             }
-        }
+        })
         if (present === true) {
             if(banned === true){
                 alert("You are banned!! Don't come again.")
@@ -85,7 +84,7 @@ const Entry = () => {
                 <form className='p-3 relative' action="" onSubmit={handleSubmit}>
                     <div className="form-row row">
                         <div className="col-md-6">
-                            <label for="fName">First Name</label>
+                            <label htmlFor="fName">First Name</label>
                             <input type="text"
                                 className="form-control"
                                 placeholder="First name"
@@ -96,7 +95,7 @@ const Entry = () => {
 
                         </div>
                         <div className="col-md-6">
-                            <label for="lName">Last Name</label>
+                            <label htmlFor="lName">Last Name</label>
                             <input type="text" className="form-control" placeholder="Last name"
                                 name="lastName"
                                 onChange={(e) => setLastName(e.target.value)}
@@ -104,7 +103,7 @@ const Entry = () => {
                         </div>
                     </div>
                     <div className='form-group mt-3'>
-                        <label for="inputRegNo">Vehicle Number</label>
+                        <label htmlFor="inputRegNo">Vehicle Number</label>
                         <input type="text" className="form-control" id="inputRegNo" placeholder='BR26AEXXXX'
                             pattern="[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4}"
                             onChange={(e) => setVehicleNumber(e.target.value)}
@@ -113,14 +112,14 @@ const Entry = () => {
                     </div>
                     <div className='form-row row mt-3'>
                         <div className='form-group col-md-6'>
-                            <label for="exitDate">Exit Date</label>
+                            <label htmlFor="exitDate">Exit Date</label>
                             <input type="date" className="form-control" id="entryDate" aria-describedby="basic-addon3"
                                 onChange={(e) => setExitDate(e.target.value)}
                                 required
                             />
                         </div>
                         <div className='form-group col-md-6'>
-                            <label for="exitTime">Exit Time</label>
+                            <label htmlFor="exitTime">Exit Time</label>
                             <input type="time" className="form-control" id="Time" aria-describedby="basic-addon3"
                                 onChange={(e) => setExitTime(e.target.value)}
                                 required

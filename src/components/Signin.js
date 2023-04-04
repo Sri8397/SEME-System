@@ -75,11 +75,11 @@ const Signin = () => {
           <Link to="/exit">Exit</Link>
         </div>
       </header>
-      <body className="font-mono">
+      <div className="font-mono">
         <form className="p-3" action='/' onSubmit={handleSubmit}>
           <div className="form-row row">
             <div className="col-md-6">
-              <label for="fName">First Name</label>
+              <label htmlFor="fName">First Name</label>
               <input
                 type="text"
                className="form-control"
@@ -90,7 +90,7 @@ const Signin = () => {
               />
             </div>
             <div className="col-md-6">
-              <label for="lName">Last Name</label>
+              <label htmlFor="lName">Last Name</label>
               <input
                 type="text"
                className="form-control"
@@ -101,7 +101,7 @@ const Signin = () => {
             </div>
           </div>
           <div className="form-group mt-3">
-            <label for="inputRegNo" required>Registration No</label>
+            <label htmlFor="inputRegNo" required>Registration No</label>
             <input
               type="text"
               className="form-control"
@@ -113,7 +113,7 @@ const Signin = () => {
             />
           </div>
           <div className="form-group mt-3">
-            <label for="inputAddress" required>Address</label>
+            <label htmlFor="inputAddress" required>Address</label>
             <input
               type="text"
              className="form-control"
@@ -125,19 +125,19 @@ const Signin = () => {
           </div>
           <div className="form-row row mt-3">
             <div className="form-group col-md-6">
-              <label for="inputCity">City</label>
+              <label htmlFor="inputCity">City</label>
               <input type="text" className="form-control" id="inputCity" 
               onChange={(e) => setCity(e.target.value)}
               required/>
             </div>
 
             <div className="form-group col-md-3">
-              <label for="inputState">State</label>
+              <label htmlFor="inputState">State</label>
               <select id="inputState" className="form-control" 
+              defaultValue="Uttar Pradesh"
               onChange={(e) => setState(e.target.value)}
               required
               >
-                <option selected>Choose...</option>
                 <option value="Andhra Pradesh">Andhra Pradesh</option>
                 <option value="Andaman and Nicobar Islands">
                   Andaman and Nicobar Islands
@@ -181,7 +181,7 @@ const Signin = () => {
               </select>
             </div>
             <div className="form-group col-md-3">
-              <label for="inputZip">Zip</label>
+              <label htmlFor="inputZip">Zip</label>
               <input type="text" className="form-control" id="inputZip" 
               required
               onChange={(e) => setZip(e.target.value)}
@@ -190,7 +190,7 @@ const Signin = () => {
           </div>
           <div className="form-row row mt-3">
             <div className="form-group col-md-6">
-              <label for="entryDate">Exit Date</label>
+              <label htmlFor="entryDate">Exit Date</label>
               <input
                 type="date"
                className="form-control"
@@ -201,7 +201,7 @@ const Signin = () => {
               />
             </div>
             <div className="form-group col-md-6">
-              <label for="entryTime">Exit Time</label>
+              <label htmlFor="entryTime">Exit Time</label>
               <input
                 type="time"
                className="form-control"
@@ -220,7 +220,7 @@ const Signin = () => {
               />
           </div>
         </form>
-      </body>
+      </div>
     </div>
     // <div className="" style={styles}>
     //

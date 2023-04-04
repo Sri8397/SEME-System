@@ -1,5 +1,5 @@
 const storedData = JSON.parse(localStorage.getItem('entry'));
-console.log(storedData)
+// console.log(storedData)
 
 
 export default function Home() {
