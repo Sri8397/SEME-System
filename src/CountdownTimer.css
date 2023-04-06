@@ -1,6 +1,7 @@
 .countdown-timer {
+    width: 10rem;
     display: flex;
-    justify-content: start;
+    justify-content: center;
 }
 
 .countdown-timer span {
