@@ -1,42 +1,24 @@
 import { useEffect, useState } from "react";
-import CountdownTimer from '../CountdownTimer'
+import CountdownTimer from "../CountdownTimer";
 
 const storedData = JSON.parse(localStorage.getItem("entry"));
 
-storedData.sort((a, b) => {
-  const date1 = new Date(`${a.exitDate} ${a.exitTime}`)
-  const date2 = new Date(`${b.exitDate} ${b.exitTime}`)
-  if(date1 > date2) return 1;
-  if (date1 < date2) return -1; 
+storedData?.sort((a, b) => {
+  const date1 = new Date(`${a.exitDate} ${a.exitTime}`);
+  const date2 = new Date(`${b.exitDate} ${b.exitTime}`);
+  if (date1 > date2) return 1;
+  if (date1 < date2) return -1;
   return 0;
-})
-console.log("sorted data")
-console.log(storedData)
-
-
+});
+console.log("sorted data");
+console.log(storedData);
 
 export default function Home() {
-  // const [days, setDays] = useState(0);
-  // const [hours, setHours] = useState(0);
-  // const [minutes, setMinutes] = useState(0);
-  // const [seconds, setSeconds] = useState(0);
 
+  const clearData = () => {
+    localStorage.removeItem('entry');
+  }
 
-  // const getTime = (edate, etime) => {
-  //   const time = +new Date(`${edate} ${etime}`) - +new Date()
-  //   setDays(Math.floor(time / (1000 * 60 * 60 * 24)));
-  //   setHours(Math.floor((time / (1000 * 60 * 60)) % 24));
-  //   setMinutes(Math.floor((time / 1000 / 60) % 60));
-  //   setSeconds(Math.floor((time / 1000) % 60));
-    
-  // }
-  // useEffect(() => {
-  //   const interval = setInterval(() => getTime(), 1000);
-
-  //   return () => clearInterval(interval);
-  // }, []);
-
-  
   return (
     <div className="mx-2 shadow-md mt-2">
       <div className="flex flex-col bg-white  h-[90vh]">
@@ -68,29 +50,32 @@ export default function Home() {
                 </thead>
                 <tbody>
                   {storedData?.map((item, index) => {
-                    const timestampMs = new Date(`${item.exitDate} ${item.exitTime}`)
-                    return(
-                    <tr className="border-b transition duration-300 ease-in-out hover:bg-neutral-100">
-                      <td className="whitespace-nowrap px-6 py-4 font-medium">
-                        {index + 1}
-                      </td>
-                      <td className="whitespace-nowrap px-6 py-4">
-                        {item.name}
-                      </td>
-                      <td className="whitespace-nowrap px-6 py-4">
-                        {item.vehicleNumber}
-                      </td>
-                      <td className="whitespace-nowrap px-6 py-4">
-                        {item.exitDate}
-                      </td>
-                      <td className="whitespace-nowrap px-6 py-4">
-                        {item.exitTime}
-                      </td>
-                      <td>
-                        <CountdownTimer countdownTimestampMs={timestampMs}/>
-                      </td>
-                    </tr>
-                  )})}
+                    const timestampMs = new Date(
+                      `${item.exitDate} ${item.exitTime}`
+                    );
+                    return (
+                      <tr className="border-b transition duration-300 ease-in-out hover:bg-neutral-100">
+                        <td className="whitespace-nowrap px-6 py-4 font-medium">
+                          {index + 1}
+                        </td>
+                        <td className="whitespace-nowrap px-6 py-4">
+                          {item.name}
+                        </td>
+                        <td className="whitespace-nowrap px-6 py-4">
+                          {item.vehicleNumber}
+                        </td>
+                        <td className="whitespace-nowrap px-6 py-4">
+                          {item.exitDate}
+                        </td>
+                        <td className="whitespace-nowrap px-6 py-4">
+                          {item.exitTime}
+                        </td>
+                        <td>
+                          <CountdownTimer countdownTimestampMs={timestampMs} />
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>

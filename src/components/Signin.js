@@ -184,6 +184,7 @@ const Signin = () => {
               <label htmlFor="inputZip">Zip</label>
               <input type="text" className="form-control" id="inputZip" 
               required
+              pattern="[0-9]{6}"
               onChange={(e) => setZip(e.target.value)}
               />
             </div>
