@@ -5,33 +5,35 @@ const Exit = () => {
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   const [vehicleNumber, setVehicleNumber] = useState();
-  const [exitTime, setExitTime] = useState();
-  const [exitDate, setExitDate] = useState();
+  const exitTime = new Date(); 
 
   function handleSubmit() {
     let data1 = JSON.parse(localStorage.getItem("entry"));
     let prevDate, prevTime;
-    if (data1 !== null) {
-      data1.forEach(function (item, ind) {
-        if (item.vehicleNumber === vehicleNumber) {
-          prevDate = item.exitDate;
-          prevTime = item.exitTime;
-          if(data1.length === 1) {
-            data1 = []
-          }
-          else 
-          data1.splice(ind, 1);
+
+    data1.forEach(function (item, ind) {
+      if (item.vehicleNumber === vehicleNumber) {
+        prevDate = item.exitDate;
+        prevTime = item.exitTime;
+        if(data1.length === 1) {
+          data1 = []
         }
-      });
-    }
+        else 
+        data1.splice(ind, 1);
+      }
+    });
+
     localStorage.setItem("entry", JSON.stringify(data1));
-    let fault = false;
-    if (prevDate !== undefined) {
-      if (prevDate < exitDate) {
-        fault = true;
-      } 
-      else if (prevDate === exitDate && prevTime < exitTime) {
-        fault = true;
+    if(prevDate !== undefined) {
+      const expectedExit = new Date(`${prevDate} ${prevTime}`)
+      let diff = exitTime - expectedExit
+      if(expectedExit >= exitTime) {
+        alert("Succesfully Exit"); 
+      }
+      else {
+        alert(`Overtime by ${diff/1000} sec`)
+        // let ans = confirm(`Pay Fine: ${diff/1000 * 1}`)
+        // console.log(ans)
       }
     }
   }
@@ -49,25 +51,25 @@ const Exit = () => {
           Exit
         </div>
       </header>
-      <body className="font-mono">
+      <div className="font-mono">
         <form className="p-3" action="/" onSubmit={handleSubmit}>
-          <div class="form-row row">
-            <div class="col-md-6">
-              <label for="fName">First Name</label>
+          <div className="form-row row">
+            <div className="col-md-6">
+              <label htmlFor="fName">First Name</label>
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 id="fName"
                 placeholder="First name"
                 required
                 onChange={(e) => setFirstName(e.target.value)}
               />
             </div>
-            <div class="col-md-6">
-              <label for="lName">Last Name</label>
+            <div className="col-md-6">
+              <label htmlFor="lName">Last Name</label>
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 id="lName"
                 placeholder="Last name"
                 onChange={(e) => setLastName(e.target.value)}
@@ -75,7 +77,7 @@ const Exit = () => {
             </div>
           </div>
           <div className="form-group mt-3">
-            <label for="inputRegNo">Vehicle Number</label>
+            <label htmlFor="inputRegNo">Vehicle Number</label>
             <input
               type="text"
               className="form-control"
@@ -86,38 +88,15 @@ const Exit = () => {
               onChange={(e) => setVehicleNumber(e.target.value)}
             />
           </div>
-          <div className="form-row row mt-3">
-            <div className="form-group col-md-6">
-              <label for="exitDate">Date</label>
-              <input
-                type="date"
-                class="form-control"
-                id="exitDate"
-                aria-describedby="basic-addon3"
-                required
-                onChange={(e) => setExitDate(e.target.value)}
-              />
-            </div>
-            <div className="form-group col-md-6">
-              <label for="exitTime">Time</label>
-              <input
-                type="time"
-                class="form-control"
-                required
-                aria-describedby="basic-addon3"
-                onChange={(e) => setExitTime(e.target.value)}
-              />
-            </div>
-          </div>
           <div className="grid justify-items-center">
             <input 
                 type="submit"
                 value="EXIT"
-                class="hover:-translate-y-0.5 transition motion-reduce:hover:translate-y-0 motion-reduce:transition-none border-spacing-2 border-2 bg-stone-700 text-stone-100 px-3 py-2 mt-4 rounded-lg" 
+                className="hover:-translate-y-0.5 transition motion-reduce:hover:translate-y-0 motion-reduce:transition-none border-spacing-2 border-2 bg-stone-700 text-stone-100 px-3 py-2 mt-4 rounded-lg" 
             />
           </div>
         </form>
-      </body>
+      </div>
     </div>
   );
 };

@@ -1,0 +1,8 @@
+.countdown-timer {
+    display: flex;
+    justify-content: start;
+}
+
+.countdown-timer span {
+    margin: 1px; 
+}

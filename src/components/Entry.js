@@ -1,8 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
-
-
 const Entry = () => {
     const [firstName, setFirstName] = useState()
     const [lastName, setLastName] = useState()
@@ -10,7 +8,8 @@ const Entry = () => {
     const [exitTime, setExitTime] = useState()
     const [exitDate, setExitDate] = useState()
     const navigate = useNavigate()
-
+    console.log(exitDate)
+    console.log(exitTime)
     let data2 = JSON.parse(localStorage.getItem('tehkikat'))
 
     function handleSubmit() {
@@ -80,7 +79,7 @@ const Entry = () => {
                     </Link>
                 </div>
             </header>
-            <body className='font-mono'>
+            <div className='font-mono'>
                 <form className='p-3 relative' action="" onSubmit={handleSubmit}>
                     <div className="form-row row">
                         <div className="col-md-6">
@@ -138,7 +137,7 @@ const Entry = () => {
                         </div>
                     </div>
                 </form>
-            </body>
+            </div>
         </div>
     );
 }
