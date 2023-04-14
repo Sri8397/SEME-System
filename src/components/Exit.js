@@ -32,15 +32,14 @@ const Exit = () => {
     });
 
     localStorage.setItem("entry", JSON.stringify(data1));
-      let diff = exitTime - prevTime;
       if(theft == true) {
         alert("Credential mismatch")
       }
-      else if(diff > 0) {
+      else if(data1[index].tle == false) {
         alert("Succesfully Exit") 
       }
-      else {
-        if(window.confirm(`Overtime by ${diff/1000} sec`) == false) {
+      else if(data1[index].tle == true){
+        if(window.confirm(`Overtime by ${(exitTime - prevTime)/1000} sec`) == false) {
           data1[index].isBanned = true;
         }
         data1[index].insideCampus = false;
