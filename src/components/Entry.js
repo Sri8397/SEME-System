@@ -8,7 +8,7 @@ const Entry = () => {
     const [exitTime, setExitTime] = useState()
     const [exitDate, setExitDate] = useState()
     const navigate = useNavigate();
-    
+
     let prevData = JSON.parse(localStorage.getItem('tehkikat'));
     let prevRAM = JSON.parse(localStorage.getItem('entry'));
     if(prevData == null) prevData = [];
@@ -46,12 +46,14 @@ const Entry = () => {
         // Check ban
         else if(banned == true) {
             alert(`Vehicle Number ${vehicleNumber} is banned. Don't come again!`);
+            navigate('/');
         }
         
         // Inside the campus
         else if(inCampus === true) {
             alert(`Vehicle Number ${vehicleNumber} is already inside the campus. Duplicate vehicle found. You are banned!`);
             prevData[index].isBanned = true;
+            navigate('/');
         }
         else{
             
