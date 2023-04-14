@@ -11,8 +11,8 @@ const Entry = () => {
 
     let prevData = JSON.parse(localStorage.getItem('tehkikat'));
     let prevRAM = JSON.parse(localStorage.getItem('entry'));
-    if(prevData == null) prevData = [];
-    if(prevRAM == null) prevRAM = [];
+    if(prevData === null) prevData = [];
+    if(prevRAM === null) prevRAM = [];
     // console.log(prevData);
     // console.log(prevRAM);
 
@@ -23,6 +23,8 @@ const Entry = () => {
         exit.setSeconds(currentTime.getSeconds());
         if(exit <= currentTime) {
             alert("Please enter correct date and time!");
+            navigate('/');
+            return; 
         }
 
         // Check whether is it banned or inside the campus
@@ -44,7 +46,7 @@ const Entry = () => {
             navigate('/signin');
         }
         // Check ban
-        else if(banned == true) {
+        else if(banned === true) {
             alert(`Vehicle Number ${vehicleNumber} is banned. Don't come again!`);
             navigate('/');
         }
@@ -53,6 +55,7 @@ const Entry = () => {
         else if(inCampus === true) {
             alert(`Vehicle Number ${vehicleNumber} is already inside the campus. Duplicate vehicle found. You are banned!`);
             prevData[index].isBanned = true;
+            localStorage.setItem('tehkikat', JSON.stringify(prevData));
             navigate('/');
         }
         else{

@@ -16,16 +16,16 @@ const Signin = () => {
     function handleSubmit() {
       // Check if already present
       let prevData = JSON.parse(localStorage.getItem('tehkikat'));
-      if(prevData == null) prevData = [];
+      if(prevData === null) prevData = [];
 
       let present = false;
       prevData.forEach(element => {
-        if(element.vehicleNumber == vehicleNumber) {
+        if(element.vehicleNumber === vehicleNumber) {
           present = true;
         }
       });
 
-      if(present == true) {
+      if(present === true) {
         alert('Already registered!');
         navigate('/entry');
       }

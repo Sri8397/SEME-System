@@ -20,7 +20,7 @@ const Exit = () => {
       if (item.vehicleNumber === vehicleNumber) {
         index = ind;
         prevTime = item.exit;
-        if(item.name != name) {
+        if(item.name !== name) {
           theft = true;
         }
         else if(data1.length === 1) {
@@ -32,14 +32,14 @@ const Exit = () => {
     });
 
     localStorage.setItem("entry", JSON.stringify(data1));
-      if(theft == true) {
+      if(theft === true) {
         alert("Credential mismatch")
       }
-      else if(data1[index].tle == false) {
+      else if(data1[index].tle === false) {
         alert("Succesfully Exit") 
       }
-      else if(data1[index].tle == true){
-        if(window.confirm(`Overtime by ${(exitTime - prevTime)/1000} sec`) == false) {
+      else if(data1[index].tle === true){
+        if(window.confirm(`Overtime by ${(exitTime - prevTime)/1000} sec`) === false) {
           data1[index].isBanned = true;
         }
         data1[index].insideCampus = false;
