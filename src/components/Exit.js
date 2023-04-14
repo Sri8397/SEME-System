@@ -9,13 +9,21 @@ const Exit = () => {
 
   function handleSubmit() {
     let data1 = JSON.parse(localStorage.getItem("entry"));
-    let prevDate, prevTime;
+    let prevTime, index
+    let theft = false
+    let name = firstName
+      if (lastName !== undefined) {
+        name += " " + lastName
+      }
 
     data1.forEach(function (item, ind) {
       if (item.vehicleNumber === vehicleNumber) {
-        prevDate = item.exitDate;
-        prevTime = item.exitTime;
-        if(data1.length === 1) {
+        index = ind;
+        prevTime = item.exit;
+        if(item.name != name) {
+          theft = true;
+        }
+        else if(data1.length === 1) {
           data1 = []
         }
         else 
@@ -24,18 +32,19 @@ const Exit = () => {
     });
 
     localStorage.setItem("entry", JSON.stringify(data1));
-    if(prevDate !== undefined) {
-      const expectedExit = new Date(`${prevDate} ${prevTime}`)
-      let diff = exitTime - expectedExit
-      if(expectedExit >= exitTime) {
-        alert("Succesfully Exit"); 
+      let diff = exitTime - prevTime;
+      if(theft == true) {
+        alert("Credential mismatch")
+      }
+      else if(diff > 0) {
+        alert("Succesfully Exit") 
       }
       else {
-        alert(`Overtime by ${diff/1000} sec`)
-        // let ans = confirm(`Pay Fine: ${diff/1000 * 1}`)
-        // console.log(ans)
+        if(window.confirm(`Overtime by ${diff/1000} sec`) == false) {
+          data1[index].isBanned = true;
+        }
+        data1[index].insideCampus = false;
       }
-    }
   }
 
   return (

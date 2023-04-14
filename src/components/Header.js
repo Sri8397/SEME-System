@@ -25,12 +25,12 @@ function Navbar() {
                     Check
                 </Link>
             </div>
-            </div>
-            {/* <a className="nav-items mr-10">
+            {/* <div className="p-3">
                 <Link className="nav-link" to="/credits">
                     Credits
                 </Link>
-            </a> */}
+            </div> */}
+            </div>
         </nav>
     ); 
 }

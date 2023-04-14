@@ -1,23 +1,18 @@
-import { useEffect, useState } from "react";
 import CountdownTimer from "../CountdownTimer";
+import moment from "moment";
 
 const storedData = JSON.parse(localStorage.getItem("entry"));
 
 storedData?.sort((a, b) => {
-  const date1 = new Date(`${a.exitDate} ${a.exitTime}`);
-  const date2 = new Date(`${b.exitDate} ${b.exitTime}`);
-  if (date1 > date2) return 1;
-  if (date1 < date2) return -1;
+  if (a.exit > b.exit) return 1;
+  if (a.exit < b.exit) return -1;
   return 0;
 });
+
 console.log("sorted data");
 console.log(storedData);
 
 export default function Home() {
-
-  const clearData = () => {
-    localStorage.removeItem('entry');
-  }
 
   return (
     <div className="mx-2 shadow-md mt-2">
@@ -35,7 +30,7 @@ export default function Home() {
                       Name
                     </th>
                     <th scope="col" className="px-6 py-4">
-                      Vehicle No.
+                      Vehicle Number
                     </th>
                     <th scope="col" className="px-6 py-4">
                       Exit Date
@@ -50,9 +45,12 @@ export default function Home() {
                 </thead>
                 <tbody>
                   {storedData?.map((item, index) => {
-                    const timestampMs = new Date(
-                      `${item.exitDate} ${item.exitTime}`
-                    );
+                    item.exit = new Date(item.exit);
+                    const timestampMs = item.exit;
+                    const exitDate = moment(item.exit).format('D-MM-YYYY');
+                    const exitTime = moment(item.exit).format('HH:MM:ss');
+                    
+                    if(timestampMs < 0) item.tle = true;
                     return (
                       <tr className="border-b transition duration-300 ease-in-out hover:bg-neutral-100">
                         <td className="whitespace-nowrap px-6 py-4 font-medium">
@@ -65,13 +63,13 @@ export default function Home() {
                           {item.vehicleNumber}
                         </td>
                         <td className="whitespace-nowrap px-6 py-4">
-                          {item.exitDate}
+                          {exitDate}
                         </td>
                         <td className="whitespace-nowrap px-6 py-4">
-                          {item.exitTime}
+                          {exitTime}
                         </td>
                         <td>
-                          <CountdownTimer countdownTimestampMs={timestampMs} />
+                          {timestampMs <= 0 ? "Time Up!" : <CountdownTimer countdownTimestampMs={timestampMs} />}
                         </td>
                       </tr>
                     );

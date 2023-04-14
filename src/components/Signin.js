@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react'
 
 
@@ -6,61 +6,58 @@ const Signin = () => {
     const [firstName, setFirstName] = useState()
     const [lastName, setLastName] = useState()
     const [vehicleNumber, setVehicleNumber] = useState()
-    const [exitTime, setExitTime] = useState()
-    const [exitDate, setExitDate] = useState()
     const [address, setAddress] = useState()
     const [city, setCity] = useState()
     const [state, setState] = useState()
     const [zip, setZip] = useState()
-    
+    const navigate = useNavigate();
+
 
     function handleSubmit() {
-      let name = firstName
-      if (lastName !== undefined) {
-        name += " " + lastName
-      }
-      const entryTime = new Date();
-      const data =
-      {
-        name: name,
-        vehicleNumber: vehicleNumber,
-        address: address,
-        city: city,
-        state: state,
-        zip: zip,
-        isBanned: false,
-        insideCampus: true,
-        TLE: false,
-        history: [
-          {
-            entry: entryTime,
-            exitTime: exitTime,
-            exitDate: exitDate,
-          }
-        ]
-      }
-      const datax =
-      {
-        name: name,
-        vehicleNumber: vehicleNumber,
-        exitTime: exitTime,
-        exitDate: exitDate
-      }
-      let data1 = JSON.parse(localStorage.getItem('entry'))
-      if (data1 === null) {
-        data1 = []
-      }
-      data1.push(datax)
-      localStorage.setItem('entry', JSON.stringify(data1))
-  
-      let data2 = JSON.parse(localStorage.getItem('tehkikat'))
-      if (data2 === null) {
-        data2 = []
-      }
-      data2.push(data)
-      localStorage.setItem('tehkikat', JSON.stringify(data2))
-    }
+      // Check if already present
+      let prevData = JSON.parse(localStorage.getItem('tehkikat'));
+      if(prevData == null) prevData = [];
 
+      let present = false;
+      prevData.forEach(element => {
+        if(element.vehicleNumber == vehicleNumber) {
+          present = true;
+        }
+      });
+
+      if(present == true) {
+        alert('Already registered!');
+        navigate('/entry');
+      }
+      // Store the data
+      else{
+        let name = firstName
+        if (lastName !== undefined) {
+          name += " " + lastName
+        }
+        const data =
+        {
+          name: name,
+          vehicleNumber: vehicleNumber,
+          address: address,
+          city: city,
+          state: state,
+          zip: zip,
+          isBanned: false,
+          insideCampus: false,
+          TLE: false,
+          history: []
+        }
+        if (prevData === null) {
+          prevData = []
+        }
+        prevData.push(data);
+        console.log(`Updated Tekikat: ${prevData}`);
+        localStorage.setItem('tehkikat', JSON.stringify(prevData)); 
+        window.alert('Added successfully!');
+        navigate('/entry');
+      }
+    }
 
   return (
     <div className="mt-2 sm:mt-6 mx-auto w-full max-w-xl border-2 shadow-md border-slate-400 min-h-[60vh]">
@@ -69,14 +66,14 @@ const Signin = () => {
         style={{ backgroundColor: "#61C0BF" }}
       >
         <div className="basis-1/2 text-xl font-mono border-b-2 border-slate-600 p-3">
-          Entry
+          <Link to='/entry'>Entry</Link>
         </div>
         <div className="basis-1/2 text-xl font-mono border-b-2 border-slate-600 p-3">
-          <Link to="/exit">Exit</Link>
+          <Link to='/exit'>Exit</Link>
         </div>
       </header>
       <div className="font-mono">
-        <form className="p-3" action='/' onSubmit={handleSubmit}>
+        <form className="p-3" onSubmit={handleSubmit}>
           <div className="form-row row">
             <div className="col-md-6">
               <label htmlFor="fName">First Name</label>
@@ -189,46 +186,14 @@ const Signin = () => {
               />
             </div>
           </div>
-          <div className="form-row row mt-3">
-            <div className="form-group col-md-6">
-              <label htmlFor="entryDate">Exit Date</label>
-              <input
-                type="date"
-               className="form-control"
-                id="entryDate"
-                aria-describedby="basic-addon3"
-                required
-                onChange={(e) => setExitDate(e.target.value)}
-              />
-            </div>
-            <div className="form-group col-md-6">
-              <label htmlFor="entryTime">Exit Time</label>
-              <input
-                type="time"
-               className="form-control"
-                id="Time"
-                aria-describedby="basic-addon3"
-                required
-                onChange={(e) => setExitTime(e.target.value)}
-              />
-            </div>
-          </div>
           <div className="grid justify-items-center">
-              <input 
-                type='submit' 
-                value='Submit' 
+              <button
                className="hover:-translate-y-0.5 transition motion-reduce:hover:translate-y-0 motion-reduce:transition-none border-spacing-2 border-2 bg-stone-700 text-stone-100 px-3 py-2 mt-4 rounded-lg"
-              />
+              >Submit</button>
           </div>
         </form>
       </div>
     </div>
-    // <div className="" style={styles}>
-    //
-    //     <div className="card-body">
-
-    //     </div>
-    // </div>
   );
 };
 
