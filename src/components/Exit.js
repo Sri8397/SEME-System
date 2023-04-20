@@ -1,49 +1,60 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const Exit = () => {
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   const [vehicleNumber, setVehicleNumber] = useState();
-  const exitTime = new Date(); 
+  const navigate = useNavigate();
+  let storedData = JSON.parse(localStorage.getItem('tehkikat'));
+  let dataRAM = JSON.parse(localStorage.getItem("entry"));
 
   function handleSubmit() {
-    let data1 = JSON.parse(localStorage.getItem("entry"));
-    let prevTime, index
     let theft = false
     let name = firstName
-      if (lastName !== undefined) {
-        name += " " + lastName
-      }
+    if (lastName !== undefined) {
+      name += " " + lastName
+    }
+    let timeDifference; 
 
-    data1.forEach(function (item, ind) {
+    let index = 0; 
+    for(index  = 0; index < storedData.length; index++) {
+      if(storedData[index].vehicleNumber === vehicleNumber) {
+        storedData[index].insideCampus = false;
+        break; 
+      }
+    }
+    
+ 
+    // alert("Wait");
+    dataRAM?.forEach(function (item, ind) {
       if (item.vehicleNumber === vehicleNumber) {
-        index = ind;
-        prevTime = item.exit;
-        if(item.name !== name) {
+
+        if (item.name !== name) {
           theft = true;
         }
-        else if(data1.length === 1) {
-          data1 = []
+        // update data
+
+        // let len = storedData[index].histroy.length;
+        // timeDifference = +new Date() - +new Date(storedData[index].history[len - 1].exit);
+        // if(timeDifference > 0) {
+        //   storedData[index].history[len-1].exit = +new Date();
+        // }
+        // storedData[index].inCampus = false; 
+
+        // if length is 1
+        if (dataRAM.length === 1) {
+          dataRAM = []
         }
-        else 
-        data1.splice(ind, 1);
+        else
+          dataRAM.splice(ind, 1);
       }
     });
 
-    localStorage.setItem("entry", JSON.stringify(data1));
-      if(theft === true) {
-        alert("Credential mismatch")
-      }
-      else if(data1[index].tle === false) {
-        alert("Succesfully Exit") 
-      }
-      else if(data1[index].tle === true){
-        if(window.confirm(`Overtime by ${(exitTime - prevTime)/1000} sec`) === false) {
-          data1[index].isBanned = true;
-        }
-        data1[index].insideCampus = false;
-      }
+     
+    localStorage.setItem("tehkikat", JSON.stringify(storedData));
+    localStorage.setItem("entry", JSON.stringify(dataRAM));
+    navigate('/'); 
   }
 
   return (
@@ -60,7 +71,7 @@ const Exit = () => {
         </div>
       </header>
       <div className="font-mono">
-        <form className="p-3" action="/" onSubmit={handleSubmit}>
+        <form className="p-3" onSubmit={handleSubmit}>
           <div className="form-row row">
             <div className="col-md-6">
               <label htmlFor="fName">First Name</label>
@@ -97,10 +108,10 @@ const Exit = () => {
             />
           </div>
           <div className="grid justify-items-center">
-            <input 
-                type="submit"
-                value="EXIT"
-                className="hover:-translate-y-0.5 transition motion-reduce:hover:translate-y-0 motion-reduce:transition-none border-spacing-2 border-2 bg-stone-700 text-stone-100 px-3 py-2 mt-4 rounded-lg" 
+            <input
+              type="submit"
+              value="EXIT"
+              className="hover:-translate-y-0.5 transition motion-reduce:hover:translate-y-0 motion-reduce:transition-none border-spacing-2 border-2 bg-stone-700 text-stone-100 px-3 py-2 mt-4 rounded-lg"
             />
           </div>
         </form>

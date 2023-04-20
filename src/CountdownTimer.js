@@ -10,28 +10,33 @@ const defaultRemainingTime = {
 }
 
 const CountdownTimer = ({countdownTimestampMs}) => {
-    const [remainingTime, setRemainingTime] = useState(defaultRemainingTime)
+    const [remainingTime, setRemainingTime] = useState(defaultRemainingTime);
 
     useEffect(() => {
         const intervalId = setInterval(() => {
             updateRemainingTime(countdownTimestampMs)
         }, 1000)
         return () => clearInterval(intervalId)
-    },[countdownTimestampMs])
+    },[countdownTimestampMs]);
 
     function updateRemainingTime(countdown) {
-        setRemainingTime(getRemainingTimeUtilsMsTimestamp(countdown))
+        setRemainingTime(getRemainingTimeUtilsMsTimestamp(countdown)); 
     }
     return (
-        <div className="countdown-timer">
-            <span>{remainingTime.days}</span>
-            <span>:</span>
-            <span>{remainingTime.hours}</span>
-            <span>:</span>
-            <span>{remainingTime.minutes}</span>
-            <span>:</span>
-            <span>{remainingTime.seconds}</span>
-        </div>
+        <>
+        {countdownTimestampMs <= +new Date() ? 
+            <div countdown='coutndown-time'>Time Up</div> : 
+            <div className="countdown-timer">
+                <span>{remainingTime.days}</span>
+                <span>:</span>
+                <span>{remainingTime.hours}</span>
+                <span>:</span>
+                <span>{remainingTime.minutes}</span>
+                <span>:</span>
+                <span>{remainingTime.seconds}</span>
+            </div>
+        }
+        </>
     )
 }
 

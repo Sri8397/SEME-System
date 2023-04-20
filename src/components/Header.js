@@ -20,16 +20,6 @@ function Navbar() {
                     Exit
                 </Link>
             </div>
-            <div className="p-3">
-                <Link className="nav-link" to="/check">
-                    Check
-                </Link>
-            </div>
-            {/* <div className="p-3">
-                <Link className="nav-link" to="/credits">
-                    Credits
-                </Link>
-            </div> */}
             </div>
         </nav>
     ); 

@@ -1,5 +1,3 @@
-// import { Link } from 'react-router-dom';
-// import { useState } from 'react'
 
 const Check = () => {
   // localStorage.removeItem('entry');

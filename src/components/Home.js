@@ -3,16 +3,17 @@ import moment from "moment";
 
 const storedData = JSON.parse(localStorage.getItem("entry"));
 
-storedData?.sort((a, b) => {
-  if (a.exit > b.exit) return 1;
-  if (a.exit < b.exit) return -1;
-  return 0;
-});
+// Shortest Remaining Time First
+for(let i = 1; i < storedData.length;i++){
+    for(let j = i - 1; j > -1; j--){
+      let x = new Date(storedData[j].exit), y = new Date(storedData[j + 1].exit); 
+        if(y < x){
+            [storedData[j+1],storedData[j]] = [storedData[j],storedData[j + 1]];
+        }
+    }
+};
 
-console.log("sorted data");
-console.log(storedData);
-
-export default function Home() {
+const Home = () => {
 
   return (
     <div className="mx-2 shadow-md mt-2">
@@ -46,13 +47,24 @@ export default function Home() {
                 <tbody>
                   {storedData?.map((item, index) => {
                     item.exit = new Date(item.exit);
-                    const timestampMs = item.exit;
+                    let show; 
+                    let remTime = item.exit - +new Date(); 
+                    let color = 'white';
+                    if(remTime < 0) {
+                      color = 'red';
+                    }
+                    remTime = remTime/(1000 * 60 * 60);
+                    if(remTime <= 3) {
+                      show = true;
+                    }
+                    const styles = {
+                      backgroundColor: color,
+                    }
                     const exitDate = moment(item.exit).format('D-MM-YYYY');
                     const exitTime = moment(item.exit).format('HH:MM:ss');
-                    
-                    if(timestampMs < 0) item.tle = true;
+                    if(show)
                     return (
-                      <tr className="border-b transition duration-300 ease-in-out hover:bg-neutral-100">
+                      <tr className="border-b transition duration-300 ease-in-out hover:bg-neutral-100" style={styles}>
                         <td className="whitespace-nowrap px-6 py-4 font-medium">
                           {index + 1}
                         </td>
@@ -69,7 +81,7 @@ export default function Home() {
                           {exitTime}
                         </td>
                         <td>
-                          {timestampMs <= 0 ? "Time Up!" : <CountdownTimer countdownTimestampMs={timestampMs} />}
+                          <CountdownTimer countdownTimestampMs={item.exit} />
                         </td>
                       </tr>
                     );
@@ -83,3 +95,4 @@ export default function Home() {
     </div>
   );
 }
+export default Home; 

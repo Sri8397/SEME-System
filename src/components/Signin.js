@@ -11,11 +11,10 @@ const Signin = () => {
     const [state, setState] = useState()
     const [zip, setZip] = useState()
     const navigate = useNavigate();
-
+    let prevData = JSON.parse(localStorage.getItem('tehkikat'));
 
     function handleSubmit() {
       // Check if already present
-      let prevData = JSON.parse(localStorage.getItem('tehkikat'));
       if(prevData === null) prevData = [];
 
       let present = false;

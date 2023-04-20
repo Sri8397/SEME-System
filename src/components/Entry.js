@@ -13,8 +13,6 @@ const Entry = () => {
     let prevRAM = JSON.parse(localStorage.getItem('entry'));
     if(prevData === null) prevData = [];
     if(prevRAM === null) prevRAM = [];
-    // console.log(prevData);
-    // console.log(prevRAM);
 
     function handleSubmit() {
         // Check input time
