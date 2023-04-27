@@ -21,27 +21,20 @@ const Exit = () => {
     for(index  = 0; index < storedData.length; index++) {
       if(storedData[index].vehicleNumber === vehicleNumber) {
         storedData[index].insideCampus = false;
+        let len = storedData[index].history.length; 
+        timeDifference = +new Date(storedData[index].history[len-1].exit) - +new Date();
+        storedData[index].history[len-1].exit = +new Date();
         break; 
       }
     }
     
- 
-    // alert("Wait");
     dataRAM?.forEach(function (item, ind) {
       if (item.vehicleNumber === vehicleNumber) {
 
         if (item.name !== name) {
           theft = true;
         }
-        // update data
-
-        // let len = storedData[index].histroy.length;
-        // timeDifference = +new Date() - +new Date(storedData[index].history[len - 1].exit);
-        // if(timeDifference > 0) {
-        //   storedData[index].history[len-1].exit = +new Date();
-        // }
-        // storedData[index].inCampus = false; 
-
+        
         // if length is 1
         if (dataRAM.length === 1) {
           dataRAM = []
@@ -50,6 +43,16 @@ const Exit = () => {
           dataRAM.splice(ind, 1);
       }
     });
+    if(theft === true) {
+      alert('Credential Mismatch'); 
+    }
+    else if(timeDifference < 0) {
+      alert(`Pay fine`)
+    }
+    else{
+      alert('Succesfully Exit')
+    }
+    
 
      
     localStorage.setItem("tehkikat", JSON.stringify(storedData));
