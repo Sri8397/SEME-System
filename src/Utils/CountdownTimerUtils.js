@@ -23,5 +23,5 @@ function padWithZeros(number, minLength) {
     // numberString = text.repeat(1)
     for(let i = 0; i < minLength - numberString.length; i++)
         numberString = text + numberString
-    return numberString
+    return numberString; 
 }
