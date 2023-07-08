@@ -11,7 +11,14 @@ function Signup() {
     const [credentials, setCredentials] = useState({ fname: "", lname: "", email: "", password: "", confirm_password: "" });
     const onSubmit = async (e) => {
         e.preventDefault();
+        for (const key in credentials) {
+            if (typeof credentials[key] === 'string')
+                credentials[key] = credentials[key].trim(); 
+        }
         const { fname, lname, email, password, confirm_password } = credentials;
+        if (password !== confirm_password) {
+            return showAlert("Password doesn't match", 'danger'); 
+        }
         let name = fname;
         if (lname.length > 0) {
             name = name + " " + lname;
@@ -31,7 +38,7 @@ function Signup() {
             navigate('/');
         }
         else {
-            showAlert("Invalid Details", "danger");
+            showAlert(json.msg, "danger");
         }
     }
 

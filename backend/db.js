@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
-const mongoURI = "mongodb://localhost:27017/seme";
+require('dotenv').config(); 
 
 
 const connectToMongo = () => {
-    mongoose.connect(mongoURI).then(() =>
+    mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }).then(() =>
         console.log(`Connected to mongodb sucessfully`)
     );
 }

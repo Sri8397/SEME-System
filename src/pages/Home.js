@@ -18,7 +18,7 @@ const Home = () => {
     }, []);
 
     // Shortest Remaining Time First
-    // const sortedEntries = entries.sort((a, b) => a.exit > b.exit); 
+    const sortedEntries = entries.sort((a, b) => a.exit > b.exit); 
 
     return (
         <div className="mx-2 shadow-md mt-2">
@@ -50,7 +50,8 @@ const Home = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {entries.map((entry, index) => {
+                                    {sortedEntries.map((entry, index) => {
+                                        if (entry)
                                         return <EntryItem key={entry._id} entry={entry} index={index}></EntryItem>
                                     })}
                                 </tbody>

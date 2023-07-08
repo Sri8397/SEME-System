@@ -1,7 +1,6 @@
 import { createContext, useState } from 'react';
 const vehicleContext = createContext();
 
-
 const VehicleState = (props) => {
     const host = "http://localhost:4000";
     const entriesInitial = [];

@@ -1,11 +1,11 @@
 const express = require('express');
 const connectToMongo = require('./db');
 const cors = require('cors');
+require('dotenv').config(); 
 
 connectToMongo();
 
 const app = express();
-const PORT = 4000;
 app.use(express.json());
 app.use(cors());
 
@@ -14,6 +14,6 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/vehicles', require('./routes/vehicle'));
 app.use('/api/entries', require('./routes/entries'));
 
-app.listen(PORT, (() =>
-    console.log(`Listening to the port at http://localhost:${PORT}`)
+app.listen(process.env.PORT, (() =>
+    console.log(`Listening to the port at http://localhost:${process.env.PORT}`)
 )); 

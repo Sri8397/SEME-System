@@ -3,7 +3,6 @@ const router = express.Router();
 const fetchUser = require('../middleware/fetchUser');
 const Entry = require('../models/Entry');
 const Vehicle = require('../models/Vehicle');
-const { body, validationResult } = require('express-validator');
 
 // ROUTE 1: Get all entries GET: api/entry/getallentries Login required
 router.get('/getallentries', fetchUser, async (req, res) => {

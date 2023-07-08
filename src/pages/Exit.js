@@ -18,11 +18,14 @@ const Exit = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        for (const key in detail) {
+            if (typeof detail[key] === 'string')
+                detail[key] = detail[key].trim(); 
+        }
         const { fname, lname, vehicle_number } = detail;
-        vehicle_number.trim(); 
-        let name = fname.trim();
+        let name = fname; 
         if (lname.length > 0) {
-            name = name + " " + lname.trim();
+            name = fname + " " + lname; 
         }
         const json = await deleteEntry(name, vehicle_number, vehicle_number);
         if (json.success) {
