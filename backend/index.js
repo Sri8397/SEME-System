@@ -1,19 +1,24 @@
 const express = require('express');
-const run = require('./db');
+const connectToMongo = require('./db');
 const cors = require('cors');
-require('dotenv').config(); 
-
-run().catch(console.dir);
+const path = require('path'); 
+require('dotenv').config();
 
 const app = express();
+
 app.use(express.json());
 app.use(cors());
+
+const port = process.env.PORT || 5000;
+
+connectToMongo();
+//serving frontend using middlewares
+app.use(express.static(path.join(__dirname, "..", "dist"))); 
+app.use(express.static("public"));
 
 // Using routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/vehicles', require('./routes/vehicle'));
 app.use('/api/entries', require('./routes/entries'));
 
-app.listen(process.env.PORT, (() =>
-    console.log(`Listening to the port at http://localhost:${process.env.PORT}`)
-)); 
+app.listen(port, () => { console.log(`Server running at http://localhost:${port}`); });
