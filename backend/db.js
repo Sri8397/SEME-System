@@ -7,7 +7,8 @@ const uri = process.env.MONGO_URI;
 // Declare a variable named option and assign optional settings
 const options = {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true, 
+    family: 4
 };
 
 // Connect MongoDB Atlas using 
