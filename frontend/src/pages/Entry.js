@@ -52,7 +52,7 @@ const Entry = () => {
         }
     };
     return (
-        <form className='row g-3' onSubmit={handleSubmit}>
+        <form className='row g-3' onSubmit={handleSubmit} noValidate>
             <div className="col-md-6">
                 <label htmlFor="fname" className="form-label">First Name</label>
                 <input type="text" value={entry.fname} className="form-control" name="fname" onChange={onChange} required />
@@ -68,7 +68,7 @@ const Entry = () => {
                 <label htmlFor="vehicle_number" className="form-label">Vehicle Number</label>
                 <input type="text" className="form-control" id="vehicle_number" name="vehicle_number" pattern='[A-Za-z0-9]{10}' onChange={onChange} value={entry.vehicle_number} required />
                 <div className="invalid-feedback">
-                    Please provide a valid vehicle number.
+                Please provide a vehicle number eg.JH09BG0976.
                 </div>
             </div>
             <div className="col-md-6">

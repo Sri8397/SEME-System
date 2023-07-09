@@ -29,7 +29,7 @@ router.post('/addentry', fetchUser, async (req, res) => {
             return res.status(400).json({ success, msg: "First Register the vehicle." });
         }
         // Check whether vehicle with same vehicle number present or not
-        let entry = await Entry.findOne({ vehicle_number, _id: id });
+        let entry = await Entry.findOne({ vehicle_number, user: id });
         if (entry) {
             return res.status(400).json({ success, msg: "Sorry this vehicle already inside the campus." });
         }

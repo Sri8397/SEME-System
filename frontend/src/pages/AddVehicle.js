@@ -69,9 +69,9 @@ const AddVehicle = () => {
             </div>
             <div className="col-12">
                 <label htmlFor="vehicle_number" className="form-label">Vehicle Number</label>
-                <input type="text" className="form-control" value={credentials.vehicle_number} name="vehicle_number" onChange={onChange} pattern='[A-Za-z0-9]{8,10}' required />
+                <input type="text" className="form-control" value={credentials.vehicle_number} name="vehicle_number" onChange={onChange} pattern='[A-Za-z0-9]{10}' required />
                 <div className="invalid-feedback">
-                    Please provide a vehicle number eg.JH09BG0976
+                    Please provide a vehicle number eg.JH09BG0976.
                 </div>
             </div>
             <div className="col-12">
