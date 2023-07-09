@@ -32,7 +32,7 @@ const AddVehicle = () => {
             if (lname.length > 0) {
                 name = fname + ' ' + lname;
             }
-            const response = await fetch(`http://localhost:4000/api/vehicles/addvehicle`, {
+            const response = await fetch(`https://seme.onrender.com/api/vehicles/addvehicle`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
