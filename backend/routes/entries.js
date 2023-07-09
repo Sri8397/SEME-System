@@ -21,7 +21,7 @@ router.post('/addentry', fetchUser, async (req, res) => {
     let success = false;
     try {
         const { name, vehicle_number, exit } = req.body;
-        const { id } = req.user.id;
+        const { id } = req.user;
 
         // Check whether vehicle is registered or not
         let vehicle = await Vehicle.findOne({ vehicle_number, user: req.user.id });
