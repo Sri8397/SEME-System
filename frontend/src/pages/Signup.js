@@ -5,6 +5,7 @@ import logo from '../seme-logo.png'
 
 
 function Signup() {
+    const port = 'https://seme.onrender.com'; 
     const context = useContext(alertContext);
     const { showAlert } = context;
     const navigate = useNavigate();
@@ -23,7 +24,7 @@ function Signup() {
         if (lname.length > 0) {
             name = name + " " + lname;
         }
-        const response = await fetch(`http://localhost:4000/api/auth/createuser`, {
+        const response = await fetch(`${port}/api/auth/createuser`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

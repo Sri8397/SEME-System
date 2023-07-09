@@ -23,7 +23,7 @@ function Login() {
             }
         });
         if (valid) {
-            const response = await fetch(`http://localhost:4000/api/auth/login`, {
+            const response = await fetch(`https://seme.onrender.com/api/auth/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
