@@ -50,11 +50,11 @@ function Login() {
     }
     return (
         <div>
-            <img src={logo} alt='seme logo' />
+            <img className="rounded" style={{ maxWidth: '50%' }} src={logo} alt='seme logo' />
             <form className="g-3" onSubmit={onSubmit} noValidate>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email address</label>
-                    <input type="email" className="form-control" id="email" name="email" onChange={onChange} value={credentials.email} aria-describedby="emailHelp" required/>
+                    <input type="email" className="form-control" id="email" name="email" onChange={onChange} value={credentials.email} aria-describedby="emailHelp" required />
                     <div className='invalid-feedback'>
                         Please provide a valid email.
                     </div>
@@ -62,7 +62,7 @@ function Login() {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="password" className="form-label">Password</label>
-                    <input type="password" value={credentials.password} onChange={onChange} className="form-control" id="password" name="password" minLength='5' required/>
+                    <input type="password" value={credentials.password} onChange={onChange} className="form-control" id="password" name="password" minLength='5' required />
                     <div className='invalid-feedback'>
                         Aleast 5 character long.
                     </div>

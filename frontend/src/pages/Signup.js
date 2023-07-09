@@ -48,7 +48,7 @@ function Signup() {
     }
     return (
         <div>
-            <img src={logo} alt='seme logo' />
+            <img className="rounded" style={{ maxWidth: '50%' }} src={logo} alt='seme logo' />
             <form className="row g-3" onSubmit={onSubmit}>
                 <div className="col-md-6">
                     <label htmlFor="fname" className="form-label">First Name</label>
