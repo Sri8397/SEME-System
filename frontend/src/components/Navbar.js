@@ -19,7 +19,7 @@ function Navbar() {
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="container-fluid">
                     <Link className="navbar-brand" to="/" >
-                        <img src={logo} alt="Logo" style={{ height: "50px", width: '100%' }} className="" />
+                        <img src={logo} alt="Logo" style={{ height: "50px", width: 'auto' }} className="" />
                     </Link>
                     <button className="bg-dark navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
