@@ -7,7 +7,7 @@ const fetchUser = require("../middleware/fetchUser");
 require("dotenv").config();
 
 const router = express.Router();
-JWT_SECRETKEY = process.env.JWT_SECRETKEY || "fuew923iusaa98we";
+const JWT_SECRETKEY = process.env.JWT_SECRETKEY || "fuew923iusaa98we";
 
 router.post(
   "/createuser",
@@ -46,7 +46,7 @@ router.post(
       success = true;
       res.json({ success, authToken });
     } catch (error) {
-      console.error(error);
+      console.log(error);
       res.status(500).json({ msg: "Internal server error occured.", success });
     }
   }
